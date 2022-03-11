@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import Box from './components/box'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,7 +21,7 @@ const removeItem = (id) =>{
   return (
     <div className="App">
       Number:   {count}<br/>
-      String:   <div style={{background:color}}> Content</div>
+      String:   <Box color={color}/>
       Boolean:  {myStatus ? "Single":"Not Single"}
       {myStatus && <div>
           Arr: {myProducts.map(item => <div>
