@@ -1,13 +1,16 @@
 import { useState,useEffect } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import Box from './components/box'
 import { Product } from './types/products'
 import { ShowInfo,ShowInfoChange } from './components/ShowInfo'
-import { Route,Routes,NavLink } from 'react-router-dom'
+import { Route,Routes,NavLink, Navigate } from 'react-router-dom'
 import HomePage from './pages/homepage'
 import AboutPage from './pages/about'
 import PostsPage from './pages/postspage'
+import AdminPage from './pages/admin/layout'
+import ProductsList from './pages/admin/list'
+import Dashboard from './pages/admin/dashboard'
+import ProductDetail from './pages/ProductsDetail'
 
 
 function App() {
@@ -27,14 +30,21 @@ function App() {
        <li>
          <NavLink to="/about">About</NavLink>
        </li>
+       <li>
+         <NavLink to="/admin">Admin</NavLink>
+       </li>
         </ul>
       </header>
       <main>
         <Routes>
             <Route path="/" element={<HomePage/>}/>
-            {/* <Route path="/products" element={<ProductsPage/>}/> */}
             <Route path="/posts" element={<PostsPage/>}/>
             <Route path="/about" element={<AboutPage/>}/>
+            <Route path="/admin" element={<AdminPage/>}>
+                <Route index element={<Navigate to ="/admin/dashboard"/>}/>
+                <Route path="dashboard" element={<Dashboard/>}/>
+                <Route path="products" element={<ProductsList/>}/>
+            </Route>
         </Routes>
       </main>
     </div>

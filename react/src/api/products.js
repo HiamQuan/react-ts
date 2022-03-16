@@ -1,6 +1,6 @@
 import instance from "./instance";
 
-const getAll= () => {
-    url="products";
+export const getAll= () => {
+   const url="products";
     return instance.get(url);
 }
