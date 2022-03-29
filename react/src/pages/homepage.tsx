@@ -1,8 +1,18 @@
-import { useState } from "react/cjs/react.production.min";
-import { getAll } from "../api/products";
+import React from 'react'
+import ProductListHome from '../components/ProductListHome'
+import ProductType from '../type/product'
 
-const HomePage =  ()=>{
-    
-    return (<h1>HomePage</h1>)
+type Props = {
+  products: ProductType[];
 }
-export default HomePage;
+const HomePage = ({products}:Props) => {
+  return (
+    <div className='container my-5 '>
+      <div className='px-10'>
+        <ProductListHome products={products}/>
+      </div>
+    </div>
+  )
+}
+
+export default HomePage

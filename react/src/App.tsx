@@ -1,52 +1,70 @@
 import { useState,useEffect } from 'react'
-import './App.css'
-import Box from './components/box'
-import { Product } from './types/products'
-import { ShowInfo,ShowInfoChange } from './components/ShowInfo'
-import { Route,Routes,NavLink, Navigate } from 'react-router-dom'
-import HomePage from './pages/homepage'
-import AboutPage from './pages/about'
-import PostsPage from './pages/postspage'
-import AdminPage from './pages/admin/layout'
-import ProductsList from './pages/admin/list'
-import Dashboard from './pages/admin/dashboard'
-import ProductDetail from './pages/ProductsDetail'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import WebSite from './layout/WebSite'
+import HomePage from './pages/HomePage'
+import "bootstrap/dist/css/bootstrap.min.css"
+import ProductPage from './pages/ProductPage'
+import ProductType from './type/product'
+import { list,remove,read,update,create } from './api/products'
+import Admin from './layout/Admin'
+import Dashboard from './pages/admin/Dashboard'
+import ProductIndex from './pages/admin/ProductIndex'
+import PrivateRouter from './components/PrivateRouter'
+import ProductAdd from './pages/admin/ProductAdd'
+import ProductEdit from './pages/admin/ProductEdit'
+import Signin from './pages/Signin';
 
 
 function App() {
-  return(
+  const [products,setProducts] = useState<ProductType[]>([]);
+  useEffect(()=>{
+      const getProducts = async () =>{
+
+          const {data} = await list();
+          setProducts(data);
+      }
+      getProducts();
+  },[]);
+
+    // Add Product
+    const onHandleAdd = async (product: any) => {
+        const {data} = await create(product);
+        setProducts([...products, data]);
+      }
+      const onHandleRemove = async (id: number) => {
+        remove(id);
+        // rerender
+        setProducts(products.filter(item => item.id !== id));
+      }
+      const onHandleUpdate = async (product: ProductType) => {
+        try {
+          // api
+           const {data} = await update(product);
+           // reREnder - 
+           // Tạo ra 1 vòng lặp, nếu item.id == id sản phẩm vừa cập nhật (data), thì cập nhật ngược lại giữ nguyên
+           setProducts(products.map(item => item.id === data.id ? product : item))
+        } catch (error) {
+          
+        }
+      }
+
+  return (
     <div className="App">
-      <header>
-        <ul>
-       <li>
-         <NavLink to = "/">HomePage</NavLink>
-       </li>
-       <li>
-         <NavLink to="/products">Products Page</NavLink>
-       </li>
-       <li>
-         <NavLink to="/posts">Blog</NavLink>
-       </li>
-       <li>
-         <NavLink to="/about">About</NavLink>
-       </li>
-       <li>
-         <NavLink to="/admin">Admin</NavLink>
-       </li>
-        </ul>
-      </header>
-      <main>
         <Routes>
-            <Route path="/" element={<HomePage/>}/>
-            <Route path="/posts" element={<PostsPage/>}/>
-            <Route path="/about" element={<AboutPage/>}/>
-            <Route path="/admin" element={<AdminPage/>}>
-                <Route index element={<Navigate to ="/admin/dashboard"/>}/>
-                <Route path="dashboard" element={<Dashboard/>}/>
-                <Route path="products" element={<ProductsList/>}/>
+            <Route path="/" element={<WebSite/>}>
+                <Route index element={<HomePage products={products}/>}/>
+                <Route path='products' element={<ProductPage products ={products}/>}/>
             </Route>
+            <Route path="admin" element={<PrivateRouter><Admin/></PrivateRouter>}>
+                <Route index element={<Dashboard/>}/>
+                <Route path='products'>
+                    <Route index element={<ProductIndex products ={products} onRemove={onHandleRemove}/>}/> 
+                    <Route path="add" element = {<ProductAdd onAdd={onHandleAdd}/>}/>
+                    <Route path=":id/edit" element={<ProductEdit onUpdate={onHandleUpdate}/>} />
+                </Route>
+            </Route>
+            <Route path="/signin" element={<Signin />}/>
         </Routes>
-      </main>
     </div>
   )
 }
