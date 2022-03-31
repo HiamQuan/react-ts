@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 const Sidebar = () => { 
   return (
     <div>
-        <nav className="navbar navbar-expand-lg navbar-light ">
+        <nav className="navbar navbar-expand-lg navbar-light tw-bg-indigo-200">
             <div className="d-flex flex-column">
                 <NavLink className="navbar-brand" to="/admin">HiamCoder</NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

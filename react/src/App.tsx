@@ -1,8 +1,10 @@
+import React from 'react'
 import { useState,useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import WebSite from './layout/WebSite'
 import HomePage from './pages/HomePage'
 import "bootstrap/dist/css/bootstrap.min.css"
+import "./App.css";
 import ProductPage from './pages/ProductPage'
 import ProductType from './type/product'
 import { list,remove,read,update,create } from './api/products'
