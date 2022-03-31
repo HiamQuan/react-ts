@@ -10,8 +10,8 @@ type Props = {
 const ProductListPage = ({products}:Props) => {
   
   return (
-    <div>
-      <h3 className='my-4'>Danh sách sản phẩm</h3>
+    <div className=''>
+      <h3 className='tw-text-3xl tw-font-semibold tw-text-center'>Danh sách khóa học</h3>
         <div className='row'>
           {products?.map((item,index)=>{
               return(
@@ -22,7 +22,7 @@ const ProductListPage = ({products}:Props) => {
                         <h5 className=" mt-2">{item.name}</h5>
                         <p className="card-text">{item.desc}</p>
                         <h6 className='cart-subtitle text-muted'>$ {item.price}</h6>
-                        <NavLink to={`/products/`+item.id}><button className='btn btn-danger mt-2 text-light'>Xem chi tiết</button></NavLink>
+                        <NavLink to={`/products/`+item._id}><button className='btn btn-danger mt-2 text-light'>Xem chi tiết</button></NavLink>
                       </div>
                   </div>
                 </div>

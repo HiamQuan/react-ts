@@ -5,7 +5,7 @@ import ProductType from '../../type/product'
 
 type Props = {
     products: ProductType[];
-    onRemove: (id: number) => void
+    onRemove: (id: string) => void
 }
 const ProductIndex = (props: Props) => {
   return (
@@ -33,7 +33,7 @@ const ProductIndex = (props: Props) => {
                     <td><img src={item.img} className="img-fluid"/></td>
                     <td className='row'>
                         <Link className="col-12 bg-info text-light text-center py-2" to = {`${item._id}/edit`}>Edit</Link>
-                        <Button variant='danger' className="bg-danger mt-2" onClick={() => props.onRemove(item.id)}>Remove</Button>
+                        <Button variant='danger' className="bg-danger mt-2" onClick={() => props.onRemove(item._id)}>Remove</Button>
                     </td>                
                   </tr>
               )})}

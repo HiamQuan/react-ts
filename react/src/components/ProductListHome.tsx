@@ -22,7 +22,7 @@ const ProductListHome = ({products}:Props) => {
                         <h5 className=" mt-2">{item.name}</h5>
                         <p className="card-text">{item.desc}</p>
                         <h6 className='cart-subtitle text-muted'>$ {item.price}</h6>
-                        <NavLink to={`/products/`+item.id}><button className='btn btn-danger mt-2 text-light'>Xem chi tiết</button></NavLink>
+                        <NavLink to={`/products/`+item._id}><button className='btn btn-danger mt-2 text-light'>Xem chi tiết</button></NavLink>
                       </div>
                   </div>
                 </div>

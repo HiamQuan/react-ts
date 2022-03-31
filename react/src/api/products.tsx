@@ -3,7 +3,7 @@ import instance from "./instance";
 import { isAuthenticate } from "../utils/localStorage";
 
 
-const { user } = isAuthenticate();
+const { user } = isAuthenticate() ? isAuthenticate(): [];
 
 export const create = (products:ProductType) => {
     const url = `/products/${user._id}`;
@@ -29,7 +29,7 @@ export const update = (products:ProductType) => {
     return instance.patch(url,products);
 }
 
-export const remove = (id : any) => {
+export const remove = (id : string) => {
     const url = `/products/${id}`;
     return instance.delete(url);
 }

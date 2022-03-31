@@ -1,14 +1,16 @@
+
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { signin, signup } from '../api/auth';
+import UserType from '../type/user';
 import { authenticated } from '../utils/localStorage';
 
 
 const Signin = () => {
-    const { register, handleSubmit, formState: { errors }} = useForm<any>();
+    const { register, handleSubmit, formState: { errors }} = useForm<UserType>();
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<any> = async data => {
+    const onSubmit: SubmitHandler<UserType> = async data => {
         const {data : user} = await signin(data);
         console.log(user);
         // localstorage

@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import WebSite from './layout/WebSite'
 import HomePage from './pages/HomePage'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import ProductPage from './pages/ProductPage'
 import ProductType from './type/product'
 import { list,remove,read,update,create } from './api/products'
@@ -15,6 +16,7 @@ import PrivateRouter from './components/PrivateRouter'
 import ProductAdd from './pages/admin/ProductAdd'
 import ProductEdit from './pages/admin/ProductEdit'
 import Signin from './pages/Signin';
+import Signup from './pages/Signup'
 
 
 function App() {
@@ -33,10 +35,10 @@ function App() {
         const {data} = await create(product);
         setProducts([...products, data]);
       }
-      const onHandleRemove = async (id: number) => {
+      const onHandleRemove = async (id: string) => {
         remove(id);
         // rerender
-        setProducts(products.filter(item => item.id !== id));
+        setProducts(products.filter(item => item._id !== id));
       }
       const onHandleUpdate = async (product: ProductType) => {
         try {
@@ -44,20 +46,24 @@ function App() {
            const {data} = await update(product);
            // reREnder - 
            // Tạo ra 1 vòng lặp, nếu item.id == id sản phẩm vừa cập nhật (data), thì cập nhật ngược lại giữ nguyên
-           setProducts(products.map(item => item.id === data.id ? product : item))
+           setProducts(products.map(item => item._id === data.id ? product : item))
         } catch (error) {
           
         }
       }
 
+      const onHandleSignOut = () =>{
+        localStorage.removeItem("user");     
+        return <Navigate to="/"/>
+      }
   return (
-    <div className="App">
+    <div className="App tw-bg-gray-200 tw-h-screen tw-font-mono">
         <Routes>
-            <Route path="/" element={<WebSite/>}>
+            <Route path="/" element={<WebSite onSignOut={onHandleSignOut}/>}>
                 <Route index element={<HomePage products={products}/>}/>
                 <Route path='products' element={<ProductPage products ={products}/>}/>
             </Route>
-            <Route path="admin" element={<PrivateRouter><Admin/></PrivateRouter>}>
+            <Route path="admin" element={<PrivateRouter><Admin products={products} onSignOut={onHandleSignOut}/></PrivateRouter>}>
                 <Route index element={<Dashboard/>}/>
                 <Route path='products'>
                     <Route index element={<ProductIndex products ={products} onRemove={onHandleRemove}/>}/> 
@@ -66,6 +72,7 @@ function App() {
                 </Route>
             </Route>
             <Route path="/signin" element={<Signin />}/>
+            <Route path="/signup" element={<Signup />}/>
         </Routes>
     </div>
   )
