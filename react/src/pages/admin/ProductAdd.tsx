@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { toast } from "react-toastify";
 
 type Inputs = { // kiểu dữ liệu của từng input
     name: string,
@@ -15,12 +16,13 @@ type ProductAddProps = {
 }
 const ProductAdd = (props: ProductAddProps) => {
     const { register, handleSubmit, formState: { errors}} = useForm<Inputs>()
-    // sử dụng hook useNavigate để chuyển sang
+    
     const navigate = useNavigate()
     const onSubmit: SubmitHandler<Inputs>  = (dataInput) => {
         props.onAdd(dataInput);
         // chuyển trang
         navigate("/admin/products");
+        toast.success("Thêm thành công");
     }
   return (
    <div className="tw-bg-gray-900 tw-py-10 tw-min-h-screen">

@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import "bootstrap/dist/css/bootstrap.css"
 import "./App.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import ProductPage from './pages/ProductPage'
 import ProductType from './type/product'
 import { list,remove,read,update,create } from './api/products'
@@ -16,7 +17,9 @@ import PrivateRouter from './components/PrivateRouter'
 import ProductAdd from './pages/admin/ProductAdd'
 import ProductEdit from './pages/admin/ProductEdit'
 import Signin from './pages/Signin';
-import Signup from './pages/Signup'
+import Signup from './pages/Signup';
+import { toast } from 'react-toastify'
+
 
 
 function App() {
@@ -34,19 +37,22 @@ function App() {
     const onHandleAdd = async (product: any) => {
         const {data} = await create(product);
         setProducts([...products, data]);
+        
       }
       const onHandleRemove = async (id: string) => {
         remove(id);
         // rerender
         setProducts(products.filter(item => item._id !== id));
+        toast.success("Xóa thành công");
+
       }
       const onHandleUpdate = async (product: ProductType) => {
         try {
           // api
            const {data} = await update(product);
-           // reREnder - 
-           // Tạo ra 1 vòng lặp, nếu item.id == id sản phẩm vừa cập nhật (data), thì cập nhật ngược lại giữ nguyên
-           setProducts(products.map(item => item._id === data.id ? product : item))
+           console.log(data);
+           // reREnder
+           setProducts(products.map(item => item._id === data._id ? product : item))
         } catch (error) {
           
         }

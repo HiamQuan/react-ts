@@ -3,13 +3,15 @@ import instance from "./instance";
 import { isAuthenticate } from "../utils/localStorage";
 
 
-const { user } = isAuthenticate() ? isAuthenticate(): [];
+const { token, user } = isAuthenticate();
+
 
 export const create = (products:ProductType) => {
     const url = `/products/${user._id}`;
+    console.log(token);
     return instance.post(url,products,{
         headers: {
-        "Authorization": `Bearer ${user.token}`
+        "Authorization": `Bearer ${token}`
         }
     })
 }

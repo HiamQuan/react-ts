@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Table } from 'react-bootstrap';
+import { Button, PlaceholderButton, SplitButton, Table } from 'react-bootstrap';
 import { NavLink,Link } from 'react-router-dom';
 import ProductType from '../../type/product'
+import { ToastContainer, toast } from 'react-toastify';
 
 type Props = {
     products: ProductType[];
@@ -11,6 +12,7 @@ const ProductIndex = (props: Props) => {
   return (
     <div>
       <div className='mx-auto my-6'>
+        <ToastContainer/>
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -19,7 +21,7 @@ const ProductIndex = (props: Props) => {
                 <th>Describe</th>
                 <th>Price</th>
                 <th className='col-3'>Image</th>
-                <th className=""></th>
+                <th className=""><Link to="/admin/products/add"><Button variant='dark' className='tw-bg-indigo-600'>Thêm</Button></Link></th>
                 </tr>
             </thead>
             <tbody>

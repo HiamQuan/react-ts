@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { read,update } from '../../api/products';
 import  ProductType  from '../../type/product';
 
@@ -31,6 +32,7 @@ const ProductEdit = (props: ProductEditProps) => {
     const onSubmit: SubmitHandler<FormInputs> = data => {
         props.onUpdate(data)
         navigate("/admin/products");
+        toast.success("Sửa thành công");
     }
   return (
 <div className="tw-bg-gray-900 tw-py-10 tw-min-h-screen">
