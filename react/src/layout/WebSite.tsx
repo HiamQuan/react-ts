@@ -1,17 +1,19 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 
 type Props = {
-  onSignOut : () => JSX.Element;
+  
 }
 
-const WebSite = ({onSignOut}:Props) => {
+const WebSite = (props:Props) => {
   return (
     <div>
-        <Header onSignOut={onSignOut}/>
+        <Header/>
         <Outlet/>
+        <Footer/>
     </div>
   )
 }

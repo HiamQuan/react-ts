@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import WebSite from './layout/WebSite'
 import HomePage from './pages/HomePage'
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.css"
 import "./App.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ProductPage from './pages/ProductPage'
@@ -52,18 +52,15 @@ function App() {
         }
       }
 
-      const onHandleSignOut = () =>{
-        localStorage.removeItem("user");     
-        return <Navigate to="/"/>
-      }
+    
   return (
-    <div className="App tw-bg-gray-200 tw-h-screen tw-font-mono">
+    <div className="App tw-bg-gray-100 tw-min-h-screen tw-font-sans">
         <Routes>
-            <Route path="/" element={<WebSite onSignOut={onHandleSignOut}/>}>
-                <Route index element={<HomePage products={products}/>}/>
+            <Route path="/" element={<WebSite />}>
+                <Route index element={<HomePage/>}/>
                 <Route path='products' element={<ProductPage products ={products}/>}/>
             </Route>
-            <Route path="admin" element={<PrivateRouter><Admin products={products} onSignOut={onHandleSignOut}/></PrivateRouter>}>
+            <Route path="admin" element={<PrivateRouter><Admin products={products}/></PrivateRouter>}>
                 <Route index element={<Dashboard/>}/>
                 <Route path='products'>
                     <Route index element={<ProductIndex products ={products} onRemove={onHandleRemove}/>}/> 

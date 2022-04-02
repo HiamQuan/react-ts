@@ -4,22 +4,21 @@ import Sidebar from '../components/admin/Sidebar'
 import ProductType from '../type/product'
 
 type Props = {
-  products: ProductType[];
-  onSignOut: () => JSX.Element;
+  products:ProductType[];
 }
 
 const Admin = (props:Props) => {
   return (
     <div>
       <div className="row">
-          <aside className='col-2'>
-            <Sidebar products={props.products} onSignOut={props.onSignOut}/>
+          <aside className='col p-0'>
+            <Sidebar products={props.products}/>
           </aside>
-          <div className="col-10">
+          <div className="col-10 p-0">
             <Outlet/>
           </div>
         </div>
-    </div>
+      </div>
   )
 }
 

@@ -8,6 +8,9 @@ type UserType = {
     password:{
         type:string,
         required:true
+    },
+    img:{
+        type:string
     }
 }
 

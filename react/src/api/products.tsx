@@ -19,6 +19,11 @@ export const list = () => {
     return instance.get(url);
 }
 
+export const listByCategory = (category:string) => {
+    const url = `/products/category=${category}`;
+    return instance.get(url);
+}
+
 export const read = (id : string | undefined) => {
     const url = `/product/${id}`;
     return instance.get(url);

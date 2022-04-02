@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.productpage{
+    background-image: url(https://res.cloudinary.com/quannaph18209/image/upload/v1648841269/n0gslczoawbugtff7zay.png);
+}
+
+.banner{
+    background-image: url(https://res.cloudinary.com/quannaph18209/image/upload/v1648841269/n0gslczoawbugtff7zay.png);
+}
+
+.img-senior{
+    position:absolute;
+    bottom:-2em;
+    left: 34%;
+}

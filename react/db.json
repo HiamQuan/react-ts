@@ -1,8 +1,11 @@
 {
-    "products":[
-        
-    ],
-    "users":[
-
-    ]
+  "products": [],
+  "users": [
+    {
+      "email": "ngong@gmail.com",
+      "password": "$2a$10$3eIOOjCJeWW8qdOcOxKCfOsqamsMlndo/ERoVZ4aEBZEHdUO5Jqyq",
+      "name": "Nguyen Anh Quan",
+      "id": 1
+    }
+  ]
 }

@@ -1,20 +1,24 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { isAuthenticate } from '../utils/localStorage';
 
 type Props = {
-    onSignOut: () => JSX.Element;
+
 }
 
-const Header = ({onSignOut}:Props) => {
+const Header = (props:Props) => {
     const user = isAuthenticate();
-    console.log(user);
+    const navigate = useNavigate();
+    const onSignOut = () =>{     
+        localStorage.removeItem("user");     
+        navigate("/");
+      }
   return (
     <div>
         <Navbar className='tw-bg-blue-800' variant="dark">
             <Container fluid className="my-1">
-                    <Navbar.Brand href='/' >HiamCoder</Navbar.Brand>
+                    <Navbar.Brand className='tw-flex tw-items-center' href='/' ><img className='img-fluid tw-w-10' src="https://res.cloudinary.com/quannaph18209/image/upload/v1648840965/fzjdc0rt7xz8pyohtmxw.png"/>HiamCoder</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <div className="tw-flex">
                         <Navbar.Collapse id="basic-navbar-nav">

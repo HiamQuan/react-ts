@@ -1,17 +1,21 @@
 import React from 'react'
-import { NavLink,Link } from 'react-router-dom'
+import { NavLink,Link, useNavigate } from 'react-router-dom'
 import ProductType from '../../type/product'
 
 
 type Props = {
     products: ProductType[];
-    onSignOut: ()=>JSX.Element;
 }
 
 const Sidebar = (props:Props) => { 
+    const navigate = useNavigate();
+    const onSignOut = () =>{
+        localStorage.removeItem("user");     
+         navigate("/");
+      }
   return (
-        <aside className="tw-w-64 tw-h-screen" aria-label="Sidebar">
-            <div className="tw-overflow-y-auto tw-py-4 tw-px-3 tw-bg-gray-50 tw-min-h-full tw-rounded dark:tw-bg-blue-800">
+        <aside className="tw-w-full tw-h-screen" aria-label="Sidebar">
+            <div className="tw-overflow-y-auto tw-pt-11 tw-px-3 tw-bg-gray-50 tw-min-h-full tw-rounded dark:tw-bg-gradient-to-br tw-from-blue-900 tw-to-cyan-600  tw-rounded-br-3xl ">
                 <ul className="tw-space-y-2 tw-min-h-full">
                 <li>
                     <Link to="dashboard" className="tw-flex tw-items-center tw-p-2 tw-text-base tw-font-normal tw-text-gray-900 tw-rounded-lg dark:tw-text-white hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700">
@@ -47,7 +51,7 @@ const Sidebar = (props:Props) => {
                     </Link>
                 </li>
                 <li>
-                    <button onClick={props.onSignOut} className=" tw-cursor-pointer tw-flex tw-items-center tw-p-2 tw-text-base tw-font-normal tw-text-gray-900 tw-rounded-lg dark:tw-text-white hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700">
+                    <button onClick={onSignOut} className=" tw-cursor-pointer tw-flex tw-items-center tw-p-2 tw-text-base tw-font-normal tw-text-gray-900 tw-rounded-lg dark:tw-text-white hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700">
                     <svg className="tw-flex-shrink-0 tw-w-6 tw-h-6 tw-text-gray-500 tw-transition tw-duration-75 dark:tw-text-gray-400 group-hover:tw-text-gray-900 dark:group-hover:tw-text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" /></svg>
                     <span className="tw-flex-1 tw-ml-3 tw-whitespace-nowrap">Sign Out</span>
                     </button>
