@@ -9,7 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductPage from './pages/ProductPage'
 import ProductType from './type/product'
-import { list,remove,read,update,create } from './api/products'
+import { list,remove,read,update,create, search } from './api/products'
 import Admin from './layout/Admin'
 import Dashboard from './pages/admin/Dashboard'
 import ProductIndex from './pages/admin/ProductIndex'
@@ -50,7 +50,6 @@ function App() {
         try {
           // api
            const {data} = await update(product);
-           console.log(data);
            // reREnder
            setProducts(products.map(item => item._id === data._id ? product : item))
         } catch (error) {

@@ -28,8 +28,8 @@ const HomePage = (props:Props) => {
                   <div className="tw-mb-3 xl:tw-min-w-96">
                     <div className="input-group tw-relative tw-flex tw-flex-wrap tw-items-stretch tw-w-full tw-mb-4">
                       <input type="search" className="form-control tw-relative tw-flex-auto tw-min-w-0 tw-block tw-w-full tw-px-4 tw-py-1.5 tw-text-xl tw-font-semibold tw-text-gray-700 tw-bg-white tw-bg-clip-padding tw-border tw-border-solid tw-border-gray-300 tw-rounded tw-transition tw-ease-in-out tw-m-0 focus:tw-text-gray-700 focus:tw-bg-white focus:tw-border-blue-600 focus:tw-outline-none" placeholder="Số điện thoại" aria-label="Search" aria-describedby="button-addon2" />
-                      <button className="btn tw-inline-block tw-px-6 tw-py-2.5 tw-bg-blue-600 tw-text-white tw-font-medium tw-text-xs tw-leading-tight tw-uppercase tw-rounded tw-shadow-md hover:tw-bg-blue-700 hover:tw-shadow-lg focus:tw-bg-blue-700  focus:tw-shadow-lg focus:tw-outline-none focus:tw-ring-0 active:tw-bg-blue-800 active:tw-shadow-lg tw-transition tw-duration-150 tw-ease-in-out tw-flex tw-items-center" type="button" id="button-addon2">
-                      <h4 className='tw-text-xl'>Đăng ký học thử</h4>
+                      <button className="btn tw-inline-block tw-px-6 tw-py-2.5 tw-bg-blue-600 tw-font-medium tw-text-xs tw-leading-tight tw-uppercase tw-rounded tw-shadow-md hover:tw-bg-blue-700 hover:tw-shadow-lg focus:tw-bg-blue-700  focus:tw-shadow-lg focus:tw-outline-none focus:tw-ring-0 active:tw-bg-blue-800 active:tw-shadow-lg tw-transition tw-duration-150 tw-ease-in-out tw-flex tw-items-center" type="button" id="button-addon2">
+                      <h4 className='tw-text-xl tw-text-white'>Đăng ký học thử</h4>
                       </button>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ const HomePage = (props:Props) => {
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
-      slidesPerView={3}
+      slidesPerView={5}
       navigation
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
