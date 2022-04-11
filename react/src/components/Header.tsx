@@ -27,7 +27,7 @@ const Header = (props:Props) => {
                                 <NavLink to="/products"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Khóa học</h3></NavLink>
                                 <NavLink to="/cart"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Giỏ hàng</h3></NavLink>
                                 <NavLink to="/blogs"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Bài viết</h3></NavLink>
-                                {user?.user.role=== 1 && <NavLink to="/admin"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Admin</h3></NavLink>}
+                                {(user?.user.role === 1 || user?.user.role === 2 || user?.user.role === 3) && <NavLink to="/admin"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Dashboard</h3></NavLink>}
                             </Nav>
                         </Navbar.Collapse>
                     </div>

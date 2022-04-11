@@ -49,7 +49,7 @@ const Fe = ({products}:Props) => {
       spaceBetween={50}
       slidesPerView={4}
       navigation
-      pagination={{ clickable: true }}
+      pagination={{ clickable: false }}
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
@@ -57,15 +57,17 @@ const Fe = ({products}:Props) => {
         {(feproducts.length === 0 ? productslist:feproducts).map((item,index)=>{
         return(
             <SwiperSlide key={index}>      
-                <div className=''>
+                <div className=' tw-my-5'>
                     <div className="border py-3 px-2 mt-3">
-                        <img className="img-fluid" src={item.img} alt="Card image cap" />
-                        <div className="d-flex flex-md-column justify-content-around">
-                        <h5 className=" mt-2 tw-text-xl tw-font-bold">{item.name}</h5>
-                        <p className="card-text">{item.desc}</p>
-                        <h6 className='cart-subtitle text-muted'>$ {item.price}</h6>
-                        <Link to={`/products/${item._id}`}><button className='btn btn-danger mt-2 text-light'>Xem chi tiết</button></Link>
-                        </div>
+                        <Link to={`/products/${item._id}`}>
+                            <img className="img-fluid" src={item.img} alt="Card image cap" />
+                            <div className="d-flex flex-md-column justify-content-around">
+                                <h5 className=" mt-2 tw-text-xl tw-font-bold">{item.name}</h5>
+                                <p className="card-text">{item.desc}</p>
+                                <h6 className='cart-subtitle text-muted'>$ {item.price}</h6>
+                                <button className='btn btn-danger mt-2 text-light'>Xem chi tiết</button>          
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </SwiperSlide>

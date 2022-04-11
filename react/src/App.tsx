@@ -27,12 +27,25 @@ import UserEdit from './pages/admin/UserEdit'
 import UserAdd from './pages/admin/UserAdd'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
+import { isAuthenticate } from './utils/localStorage'
+import { createOrder } from './api/order'
+import Inbox from './pages/admin/Inbox'
+import { io } from 'socket.io-client'
 
 
 
 function App() {
   const [products,setProducts] = useState<ProductType[]>([]);
   const [users,setUser] = useState<UserType[]>([]);
+  const currentCart = JSON.parse(localStorage.getItem("order"));
+  const [socket,setSocket] = useState(io("http://localhost:3002"));
+  const user = isAuthenticate();
+
+  useEffect(()=>{
+    console.log(socket)
+    socket.emit("newUser",user?.name)
+  },[])
+
   useEffect(()=>{
       const getProducts = async () =>{
           const {data} = await list();
@@ -96,7 +109,25 @@ function App() {
         
       }
     }
+    const [stateCart,setCart] = useState([]);
+    // Order cart
+    let cart = [];
+    if(localStorage.getItem('cart')){
+        cart = JSON.parse(localStorage.getItem('cart'))
+    };
 
+     const addCart = (newOrder, next) => {
+      
+      const existProduct = cart.find(item => item?.productId === newOrder.productId);
+  
+      if(!existProduct){
+        cart.push(newOrder);
+          localStorage.setItem('cart', JSON.stringify(cart))
+      }
+      next();
+  }
+  
+  
     
   return (
     <div className="App tw-bg-gray-100 tw-min-h-screen tw-font-sans">
@@ -104,23 +135,23 @@ function App() {
             <Route path="/" element={<WebSite />}>
                 <Route index element={<HomePage/>}/>
                 <Route path='products' element={<ProductPage/>}/>
-                <Route path='products/:id' element={<ProductDetail/>} />
+                <Route path='products/:id' element={<ProductDetail addToCart={addCart}/>} />
             </Route>
-            <Route path="admin" element={<PrivateRouter><Admin products={products}/></PrivateRouter>}>
+            <Route path="admin" element={<PrivateRouter><Admin socket={socket} products={products}/></PrivateRouter>}>
                 <Route index element={<Dashboard/>}/>
                 <Route path='products'>
                     <Route index element={<ProductIndex products ={products} onRemove={onHandleRemove}/>}/> 
                     <Route path="add" element = {<ProductAdd onAdd={onHandleAdd}/>}/>
                     <Route path=":id/edit" element={<ProductEdit onUpdate={onHandleUpdate}/>} />
                 </Route>
+                <Route path="inbox" element={<Inbox/>} />
                 <Route path='users'>
                     <Route index element={<UserIndex products={users} onRemove={onUserRemove}/>}/> 
                     <Route path="add" element = {<UserAdd  onAdd={onUserAdd}/>}/>
                     <Route path=":id/edit" element={<UserEdit onUpdate={onUserUpdate}/>} />
                 </Route>
             </Route>
-            <Route path="cart" element={<Cart/>}/>
-            <Route path="checkout" element={<Checkout/>}/>
+            <Route path="cart" element={<Cart socket = { socket } user={user}/>}/>
             <Route path="/signin" element={<Signin />}/>
             <Route path="/signup" element={<Signup />}/>
         </Routes>
