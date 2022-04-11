@@ -5,6 +5,6 @@ export const authenticated = (user: UserType, next: () => void) => {
     next();
 }
 export const isAuthenticate = () => {
-    if(!localStorage.getItem('user')) return;
+    if(!localStorage.getItem('user')) return ;
     return JSON.parse(localStorage.getItem('user') as string)
 }

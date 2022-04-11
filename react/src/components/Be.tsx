@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { listByCategory } from '../api/products';
+import { listByCategory, sort } from '../api/products';
 import ProductType from '../type/product';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
@@ -14,23 +14,33 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 type Props = {
-
+ products: ProductType[];
 }
 
-const Be = (props:Props) => {
-    const [products,setProducts] = useState<ProductType[]>([]);
-
+const Be = ({products}:Props) => {
+    const [productslist,setProducts] = useState<ProductType[]>([]);
+    const beproducts= products.filter((item)=>item.category=== "be");
     useEffect(()=>{
+        
         const getProduct= async () =>{
             const { data } = await listByCategory("be");
             setProducts(data);
         }
         getProduct();
     },[])
-  
+
+
+    const sortByOrder = async (order:string) =>{
+        const {data} = await sort("price",order,"be");
+        setProducts(data);
+    }
   return (
     <div>
-      <h3 className='tw-text-3xl tw-font-bold tw-text-gray-200 tw-py-5 tw-rounded-tr-full tw-rounded-tl-full tw-text-center tw-bg-blue-800'>Khóa học Back End</h3>
+      <h3 className=' tw-text-3xl tw-font-bold tw-text-gray-200 tw-py-5 tw-rounded-tr-full tw-rounded-tl-full tw-text-center tw-bg-blue-800'>Khóa học Back End</h3>
+      <div className='tw-text-center tw-my-4'>
+        <button onClick={()=>sortByOrder("desc")}><i className="fa-solid fa-arrow-down-wide-short tw-text-4xl"></i></button>
+        <button onClick={()=>sortByOrder("asc")}><i className="fa-solid fa-arrow-up-wide-short tw-text-4xl"></i></button>
+      </div>
       <Swiper className=''
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -42,7 +52,7 @@ const Be = (props:Props) => {
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
     >
-        {products?.map((item,index)=>{
+        {(beproducts.length === 0 ? productslist:beproducts).map((item,index)=>{
         return(
             <SwiperSlide key={index}>      
                 <div className=''>

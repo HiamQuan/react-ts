@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () =>{
     return(
-<footer className="tw-p-4 tw-bg-white sm:tw-p-6 dark:tw-bg-gray-800 tw-mt-20">
+<footer className="tw-p-4 tw-bg-white sm:tw-p-6 dark:tw-bg-gray-800 tw-mt-20 ">
   <div className="md:tw-flex md:tw-justify-between tw-px-10">
     <div className="tw-mb-6 md:tw-mb-0">
       <a href="https://flowbite.com" className="tw-flex tw-items-center">

@@ -18,15 +18,16 @@ const Header = (props:Props) => {
     <div>
         <Navbar className='tw-bg-blue-800' variant="dark">
             <Container fluid className="my-1">
-                    <Navbar.Brand className='tw-flex tw-items-center' href='/' ><img className='img-fluid tw-w-10' src="https://res.cloudinary.com/quannaph18209/image/upload/v1648840965/fzjdc0rt7xz8pyohtmxw.png"/>HiamCoder</Navbar.Brand>
+                    <Navbar.Brand className='tw-flex tw-items-center' href='/' ><img className='img-fluid tw-w-10 tw-mr-1' src="https://res.cloudinary.com/quannaph18209/image/upload/v1648840965/fzjdc0rt7xz8pyohtmxw.png"/>HiamCoder</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <div className="tw-flex">
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link href="/"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Trang chủ</h3></Nav.Link>
-                                <Nav.Link href="/products"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Khóa học</h3></Nav.Link>
-                                <Nav.Link href="/blogs"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Bài viết</h3></Nav.Link>
-                                <Nav.Link href="/admin"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Admin</h3></Nav.Link>
+                                <NavLink to="/"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Trang chủ</h3></NavLink>
+                                <NavLink to="/products"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Khóa học</h3></NavLink>
+                                <NavLink to="/cart"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Giỏ hàng</h3></NavLink>
+                                <NavLink to="/blogs"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Bài viết</h3></NavLink>
+                                {user?.user.role=== 1 && <NavLink to="/admin"><h3 className='tw-text-gray-200 tw-text-lg px-2'>Admin</h3></NavLink>}
                             </Nav>
                         </Navbar.Collapse>
                     </div>

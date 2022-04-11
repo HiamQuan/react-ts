@@ -42,7 +42,12 @@ export const remove = (id : string) => {
 }
 
 export const search = (text:string)=>{
-    const url = `/products?searchText=${text}`;
+    const url = `/search?searchText=${text}`;
+    return instance.get(url);
+}
+
+export const sort = (item:string,order:string,category:string)=>{
+    const url = `/products/category=${category}?sortBy=${item}&orderBy=${order}`;
     return instance.get(url);
 }
 
