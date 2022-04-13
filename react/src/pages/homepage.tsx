@@ -86,15 +86,15 @@ const HomePage = (props:Props) => {
         </div>
 
         <div className='tw-grid tw-grid-cols-3 tw-gap-8 tw-px-20 tw-my-40'>
-          <div className='tw-grid tw-grid-cols-2 tw-bg-white tw-rounded-xl tw-w-3/4 tw-p-4'>
+          <div className='tw-grid tw-grid-cols-2 tw-w-full tw-bg-white tw-rounded-xl tw-p-4'>
             <img className=' tw-rounded-full' src="https://res.cloudinary.com/quannaph18209/image/upload/v1648856937/lbrjknsjyj39bwhql976.png"/>
             <p className="">Tât cả các chuyên gia giảng viên này đều được huấn luyện qua một chương trình được thiết kế đặc biệt để đảm bảo rằng tất cả các bé đều có niềm đam mê sáng tạo học tập cao nhất.</p>
           </div>
-          <div className='tw-grid tw-grid-cols-2 tw-bg-white tw-rounded-xl tw-w-3/4 tw-p-4'>
+          <div className='tw-grid tw-grid-cols-2 tw-bg-white tw-rounded-xl tw-w-full tw-p-4'>
             <img className=' tw-rounded-full' src="https://res.cloudinary.com/quannaph18209/image/upload/v1648856937/lbrjknsjyj39bwhql976.png"/>
             <p className="">Các giảng viên được chọn từ quá trình phỏng vấn nghiêm ngặt. Chúng tôi chỉ chọn được một trong số 100 ứng viên ứng tuyển.</p>
           </div>
-          <div className='tw-grid tw-grid-cols-2 tw-bg-white tw-rounded-xl tw-w-3/4 tw-p-4'>
+          <div className='tw-grid tw-grid-cols-2 tw-bg-white tw-rounded-xl tw-w-full tw-p-4'>
             <img className=' tw-rounded-full' src="https://res.cloudinary.com/quannaph18209/image/upload/v1648856937/lbrjknsjyj39bwhql976.png"/>
             <p className="">Các giảng viên sẽ làm một bản tường trình báo cáo chi tiết về quá trình học của học viên sau mỗi 4 buổi dạy.</p>
           </div>

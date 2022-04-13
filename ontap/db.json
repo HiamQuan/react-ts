@@ -1,0 +1,23 @@
+{
+  "products": [
+    {
+      "name": "San Pham B",
+      "desc": "mo ta o day",
+      "price": "20000",
+      "img": "https://picsum/photo/400/400",
+      "id": 2
+    }
+  ],
+  "users": [
+    {
+      "email": "ngongquan@gmail.com",
+      "password": "$2a$10$bm1h2Yu937W.gV0PRVlhgOj2rfX6SvRI5r5lCtOolHDBqNFuY9g9O",
+      "id": 1
+    },
+    {
+      "email": "nguyen.quan@brightchamps.com",
+      "password": "$2a$10$KjQV4ZdxZNGb5vFeOpM8YepLOUYsRTZ3OnOXKQGpPbs9INXYCqK7y",
+      "id": 2
+    }
+  ]
+}

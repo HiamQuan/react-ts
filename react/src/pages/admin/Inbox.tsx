@@ -47,7 +47,7 @@ const Inbox = () =>{
                         <div><p className="tw-text-lg tw-text-gray-600">Môn học: {items.productId.name}</p></div>
                         <div><p className="tw-text-lg tw-text-gray-600">Học phí: ${items.productId.price}</p></div>
                         <div><p className="tw-text-lg tw-text-gray-600">Lịch đăng ký: {new Date(items.schedule.day,0,0).toLocaleDateString('vi-Vi',{weekday:"long"})} ({items.schedule.hour})</p></div>
-                        <span className="tw-text-base tw-font-light tw-text-gray-600">{moment(items.time).startOf("hour").calendar()}</span>
+                        <span className="tw-text-base tw-font-light tw-text-gray-600">{moment(items.time).calendar()}</span>
                     </div>
                   
                 </div>

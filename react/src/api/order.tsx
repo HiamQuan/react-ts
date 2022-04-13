@@ -28,6 +28,11 @@ export const readOrder = (id : string | undefined) => {
     return instance.get(url);
 }
 
+export const readByUser = (id : string | undefined) => {
+    const url = `/orders/userId=${id}`;
+    return instance.get(url);
+}
+
 export const updateOrder = (orders:OrderType) => {
     const url = `/order/${orders._id}`;
     return instance.patch(url,orders);
